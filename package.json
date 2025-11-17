@@ -1,7 +1,10 @@
 ﻿{
   "name": "com.vtf.config-kit",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "displayName": "ConfigKit",
-  "description": "This is a package for config"
+  "description": "This is a package for config",
+  "dependencies": {
+    "com.unity.nuget.newtonsoft-json": "3.2.1"
+  }
 }
 

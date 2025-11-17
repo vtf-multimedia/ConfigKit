@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using Newtonsoft.Json;
 using UnityEngine;
 
 namespace ConfigKit.Runtime
@@ -37,26 +38,26 @@ namespace ConfigKit.Runtime
         private static T LoadFromEditor<T>() where T : BaseConfig
         {
             var json = File.ReadAllText(_editorConfigPath);
-            var config = JsonUtility.FromJson<T>(json);
+            var config = JsonConvert.DeserializeObject<T>(json);
             return config;
         }
         
         private static T LoadFromPersistent<T>() where T : BaseConfig
         {
             var json = File.ReadAllText(_persistentPath);
-            var config = JsonUtility.FromJson<T>(json);
+            var config = JsonConvert.DeserializeObject<T>(json);
             return config;
         }
         
         private static void SaveEditorConfig<T>(T config) where T : BaseConfig
         {
-            var json = JsonUtility.ToJson(config);
+            var json = JsonConvert.SerializeObject(config);
             File.WriteAllText(_editorConfigPath, json);
         }
         
         private static void SavePersistenceConfig<T>(T config) where T : BaseConfig
         {
-            var json = JsonUtility.ToJson(config);
+            var json = JsonConvert.SerializeObject(config);
             File.WriteAllText(_persistentPath, json);
         }
     }
